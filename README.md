@@ -43,6 +43,10 @@ The requirements for this assignment are as follows:
 * what framework do I use for the timeseries? Pandas? I believe pandas can do data visualizations.
 * read the csv file in with an argument in case they want to run it with a different csv.
 * python has a csvreader, but look into other options
+
+* set up the endpoints with stubs. Be sure to run docker compose up --build to see changes.
+
+* created a Concentration class for simple data management. Currently stubbed.
 4. Tests? 
 5. Write a completed README.md
 
@@ -57,3 +61,5 @@ I'll start with the sum, it should be the easiest to confirm as correct.
 /get-std-deviation, returns the standard deviation of the concentration
 
 /get-image, returns png visualization of concentration
+
+I'm not sure what the best way to make the image is, but I think I can use matplotlib.

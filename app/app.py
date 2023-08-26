@@ -2,6 +2,7 @@ import argparse
 from flask import Flask
 from concentration import Concentration
 
+# note: running this outside of the docker container will require the argument -c app/concentration.timeseries.csv or other location
 parser = argparse.ArgumentParser()
 parser.add_argument('-c', '--csv_file', type=str, help='The location of the csv file containing concentration data.', default='concentration.timeseries.csv')
 

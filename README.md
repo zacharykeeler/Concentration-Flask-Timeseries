@@ -19,8 +19,6 @@ The requirements for this assignment were:
 - Docker
 - Docker Compose
 
-<!-- Make sure this works on windows and on my laptop. -->
-
 ## Getting Started
 
 1. **Clone the repository**:
@@ -30,6 +28,7 @@ The requirements for this assignment were:
    ```
 
 2. **Run the application**:
+   - Ensure that the Docker daemon is running before running the following commands. On Windows, launch the Docker desktop application.
    - Run in detached mode (background):
      ```bash
      docker-compose up -d
@@ -40,7 +39,7 @@ The requirements for this assignment were:
      ```
 
 
-3. **Access the application**:
+4. **Access the application**:
     Visit either http://localhost:8000/ or http://127.0.0.1:8000/ and one of the endpoints, like http://localhost:8000/get-sum, in your browser to confirm the application is running.
 
 ## API Endpoints

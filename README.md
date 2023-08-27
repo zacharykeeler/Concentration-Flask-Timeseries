@@ -58,11 +58,16 @@ The requirements for this assignment are as follows:
 
 * This looks good https://matplotlib.org/stable/gallery/mplot3d/scatter3d.html
 
+* Colors https://matplotlib.org/stable/tutorials/colors/colormaps.html
+
 * Core functionality complete, code still needs some cleanup and need to write readme.md
 
 * Might want to change the format of the numbers that get returned from E to digits.
 
 4. Tests? 
+
+* I opted not to do proper automated tests, but I did add exception handling. Testing would be easy to implement if needed. I created a bad.csv and made sure the csv exception handling worked properly.
+
 5. Write a completed README.md
 
 ## API Endpoints

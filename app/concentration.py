@@ -2,25 +2,40 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 class Concentration:
-    def __init__(self, csv_file):
-        df = pd.read_csv(csv_file)
-        self.mean = str(df['concentration'].mean())
-        self.dev = str(df['concentration'].std())
-        self.sum = str(df['concentration'].sum())
-        self.image_location = '3D_concentration_visualization.png'
-        self.create_image(df, self.image_location)
+    _img_location = '3D_concentration_visualization.png'
 
-    @staticmethod
-    def create_image(df, location):
+    def __init__(self, csv_file):
+        self._df = pd.read_csv(csv_file)
+        self._check_required_columns()
+        self._create_image()
+
+    @property
+    def img_location(self):
+        return self._img_location
+
+    def mean(self):
+        return str(self._df['concentration'].mean())
+
+    def std_dev(self):
+        return str(self._df['concentration'].std())
+
+    def sum(self):
+        return str(self._df['concentration'].sum())
+
+    def _check_required_columns(self):
+        required_columns = ['z', 'y', 'x', 'concentration']
+        missing_columns = [col for col in required_columns if col not in self._df.columns]
+        
+        if missing_columns:
+            raise Exception(f"Missing columns in the CSV file: {', '.join(missing_columns)}")
+
+    def _create_image(self):
         fig = plt.figure()
         ax = fig.add_subplot(projection='3d')
 
-        # 'c' determines the color based on the concentration value.
-        # 'cmap' is the colormap used. Coolwarm is blue to red.
-        # https://matplotlib.org/stable/tutorials/colors/colormaps.html
-        scatter = ax.scatter(df['x'], df['y'], df['z'], c=df['concentration'], cmap='coolwarm')
+        scatter = ax.scatter(self._df['x'], self._df['y'], self._df['z'], c=self._df['concentration'], cmap='coolwarm')
 
-        cbar = fig.colorbar(scatter, ax=ax, shrink=0.5, aspect=5)
+        cbar = fig.colorbar(scatter, ax=ax)
         cbar.set_label('Concentration')
 
         ax.set_xlabel('X axis')
@@ -28,4 +43,4 @@ class Concentration:
         ax.set_zlabel('Z axis')
         ax.set_title('3D Visualization of Concentration')
 
-        plt.savefig(location, dpi=300)
+        plt.savefig(self._img_location, dpi=300)

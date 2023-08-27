@@ -1,31 +1,33 @@
 import argparse
+import os
 from flask import Flask, send_file
 from concentration import Concentration
-
-# note: running this outside of the docker container will require the argument -c app/concentration.timeseries.csv or other location
-parser = argparse.ArgumentParser()
-parser.add_argument('-c', '--csv_file', type=str, help='The location of the csv file containing concentration data.', default='concentration.timeseries.csv')
 
 app = Flask(__name__)
 
 @app.route('/get-mean')
-def mean():
-	return concentration.mean
+def get_mean():
+    return concentration.mean()
 
 @app.route('/get-std-deviation')
-def dev():
-	return concentration.dev
+def get_std_deviation():
+    return concentration.std_dev()
 
 @app.route('/get-sum')
-def sum():
-	return concentration.sum
+def get_sum():
+    return concentration.sum()
 
 @app.route('/get-image')
-def image():
-	return send_file(concentration.image_location, mimetype='image/png')
+def get_image():
+    return send_file(concentration.img_location, mimetype='image/png')
 
-# I want to calculate everything as it is initialized so I only need to store and return the data
 if __name__ == '__main__':
-	args = parser.parse_args()
-	concentration = Concentration(args.csv_file)
-	app.run(host='0.0.0.0', port=8000)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--csv_file', type=str, help='The location of the csv file containing concentration data.', default='concentration.timeseries.csv')
+    args = parser.parse_args()
+
+    if not os.path.isfile(args.csv_file):
+        raise FileNotFoundError(f"File '{args.csv_file}' does not exist.")
+
+    concentration = Concentration(args.csv_file)
+    app.run(host='0.0.0.0', port=8000)

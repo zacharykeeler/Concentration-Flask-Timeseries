@@ -1,5 +1,5 @@
 import argparse
-from flask import Flask
+from flask import Flask, send_file
 from concentration import Concentration
 
 # note: running this outside of the docker container will require the argument -c app/concentration.timeseries.csv or other location
@@ -22,9 +22,7 @@ def sum():
 
 @app.route('/get-image')
 def image():
-	# this might not be correct, might need to access a file.
-	return concentration.image
-
+	return send_file(concentration.image_location, mimetype='image/png')
 
 # I want to calculate everything as it is initialized so I only need to store and return the data
 if __name__ == '__main__':

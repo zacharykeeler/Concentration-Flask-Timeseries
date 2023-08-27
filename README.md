@@ -47,6 +47,21 @@ The requirements for this assignment are as follows:
 * set up the endpoints with stubs. Be sure to run docker compose up --build to see changes.
 
 * created a Concentration class for simple data management. Currently stubbed.
+
+* mean std and sum all appear to be working, need to manually check they are correct before submitting.
+
+* For the image, I will need to research what library to use. Requirements just say to do a visualization.
+
+* Could do a 3D plot and color each point depending on the concentration.
+
+* I was told this was a timeseries, however my variables are x y z and concentration. I am not finding any examples of a 3D concentration timeseries online.
+
+* This looks good https://matplotlib.org/stable/gallery/mplot3d/scatter3d.html
+
+* Core functionality complete, code still needs some cleanup and need to write readme.md
+
+* Might want to change the format of the numbers that get returned from E to digits.
+
 4. Tests? 
 5. Write a completed README.md
 

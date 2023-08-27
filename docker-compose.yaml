@@ -1,7 +1,7 @@
 services:
   web: 
     build:
-      context: app
+      context: .
     # flask requires SIGINT to stop gracefully
     stop_signal: SIGINT
     ports:
